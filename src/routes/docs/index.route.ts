@@ -1,9 +1,11 @@
 import { Response, Route } from "@gest/framework";
 
-export const route = new Route();
+export class DocsRoute {
+  static create(): Route {
+    const route = new Route();
 
-route.get(() => {
-  const html = `<!doctype html>
+    route.get(() => {
+      const html = `<!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -24,10 +26,16 @@ route.get(() => {
     </script>
   </body>
 </html>`;
-  return new Response({
-    headers: {
-      "Content-Type": "text/html; charset=utf-8",
-    },
-    data: html,
-  });
-});
+      return new Response({
+        headers: {
+          "Content-Type": "text/html; charset=utf-8",
+        },
+        data: html,
+      });
+    });
+
+    return route;
+  }
+}
+
+export const route = DocsRoute.create();
