@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@gest/framework": "npm:@jsr/gest__framework"
+  }
+}
