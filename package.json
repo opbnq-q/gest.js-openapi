@@ -1,6 +1,6 @@
 {
   "dependencies": {
     "@asteasolutions/zod-to-openapi": "^8.4.0",
-    "@gest/framework": "^0.1.10"
+    "@gest/framework": "npm:@jsr/gest__framework@^0.1.10"
   }
 }
