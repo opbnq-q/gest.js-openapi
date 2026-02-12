@@ -37,5 +37,3 @@ export class DocsRoute {
     return route;
   }
 }
-
-export const route = DocsRoute.create();
