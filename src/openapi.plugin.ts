@@ -19,11 +19,14 @@ export class OpenapiPlugin implements IPlugin {
     this.routes.forEach((route) => {
       Object.entries(route.handlers).forEach(([method, handlerConfig]) => {
         const validationSchema = handlerConfig.validationSchema;
+
         const paramsSchema = this.buildParamsSchema(
           validationSchema?.path,
           route.path,
         );
+
         const querySchema = this.buildParamsSchema(validationSchema?.query);
+
         const requestBody = validationSchema?.jsonBody
           ? {
               content: {
@@ -68,15 +71,19 @@ export class OpenapiPlugin implements IPlugin {
     routePath?: string,
   ): z.ZodObject<any> | undefined {
     const shape: Record<string, z.ZodTypeAny> = {};
+
     if (source) {
       Object.assign(shape, source);
     }
+
     if (routePath) {
       for (const key of this.extractPathParams(routePath)) {
         if (!shape[key]) shape[key] = z.string();
       }
     }
+
     if (Object.keys(shape).length === 0) return undefined;
+
     return z.object(shape) as z.ZodObject<any>;
   }
 
